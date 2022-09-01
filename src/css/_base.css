@@ -1,0 +1,7 @@
+@tailwind base;
+
+@layer base {
+    * {
+        @apply font-Poppins box-border;
+    }
+}

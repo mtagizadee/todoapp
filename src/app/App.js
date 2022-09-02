@@ -1,10 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
+import Error from "../pages/error/Error";
 
 const App = () => {
     return (
-        <div className='flex items-center justify-center w-screen h-screen'>
-          <p> App </p>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' exact={true} element={<div> App </div>}/>
+                <Route path='auth/login' exact={true} element={<Login />}/>
+                <Route path='auth/signup' exact={true} element={<Signup />}/>
+                <Route path='*' exact={true} element={<Navigate to='/error' />}/>
+                <Route path='/error' exact={true} element={<Error />}/>
+            </Routes>
+        </BrowserRouter>
     );
 };
 

@@ -8,4 +8,12 @@
     .center-content {
         @apply flex items-center justify-center;
     }
+
+    .clickable {
+        @apply hover:cursor-pointer;
+    }
+
+    .link {
+        @apply text-primary-title clickable;
+    }
 }

@@ -4,4 +4,20 @@
     * {
         @apply font-Poppins box-border;
     }
+
+    body {
+        @apply bg-primary-bg text-white;
+    }
+
+    form {
+        @apply bg-primary-card p-6 flex flex-col items-center w-full max-w-[300px] m-3 rounded-2xl;
+    }
+
+    input {
+        @apply bg-inherit border-primary-border border-2 px-3 py-2 rounded-2xl outline-none text-primary-title w-full;
+    }
+
+    button {
+        @apply bg-primary-border text-primary-title py-1 px-4 rounded-3xl;
+    }
 }

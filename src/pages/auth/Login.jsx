@@ -14,8 +14,9 @@ const Login = () => {
                 <Input
                     value={email}
                     setValue={setEmail}
-                    type='text'
+                    type='email'
                     label='Email'
+                    required={true}
                     className='my-3'
                 />
                 <Input
@@ -23,10 +24,11 @@ const Login = () => {
                     setValue={setPassword}
                     type='password'
                     label='Password'
+                    required={true}
                 />
-                <button className='my-6'> Log in </button>
-                <div className='center-content flex-col'>
-                    <p> Already have an account? </p>
+                <button> Log in </button>
+                <div className='form-link'>
+                    <p> Don't have an account? </p>
                     <NavLink to='/auth/signup' className='link'> Sign up </NavLink>
                 </div>
             </form>

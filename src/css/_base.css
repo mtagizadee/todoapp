@@ -14,7 +14,7 @@
     }
 
     form > button {
-        @apply my-4;
+        @apply my-4 text-lg;
     }
 
     form > .form-link {

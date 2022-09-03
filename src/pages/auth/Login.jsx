@@ -2,14 +2,31 @@ import React, {useState} from 'react';
 import Logo from "../../components/Logo";
 import Input from "../../components/ui/Input";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "../../features/slices/authSlice";
+import {useNavigate} from "react-router";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            dispatch(await login({email, password}));
+            alert('Successfully logged in, navigating to home page...');
+            navigate('/');
+        } catch (error) {
+            alert(error);
+        }
+    }
+
     return (
         <div className='full-screen center-content'>
-            <form>
+            <form onSubmit={onSubmit}>
                 <Logo clickable={true}/>
                 <Input
                     value={email}

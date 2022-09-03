@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import Logo from "../../components/Logo";
 import Input from "../../components/ui/Input";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {signup} from "../../features/slices/authSlice";
+import {useNavigate} from "react-router";
 
 const Signup = () => {
     const [firstName, setFirstName] = useState('');
@@ -10,9 +13,28 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        if (password === confirmedPassword) {
+            try {
+                dispatch(await signup({firstName, secondName, email, password}))
+                alert('Successfully signed up, navigating to home page...');
+                navigate('/');
+            } catch (error) {
+                alert(error);
+            }
+
+        } else {
+            alert("Repeated password doesn't match original password");
+        }
+    }
+
     return (
         <div className='full-screen center-content'>
-            <form>
+            <form onSubmit={onSubmit}>
                 <Logo clickable={false} />
                 <Input
                     type='text'

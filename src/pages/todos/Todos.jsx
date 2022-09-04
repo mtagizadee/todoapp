@@ -4,7 +4,9 @@ import LayOut from "../../components/layout";
 const Todos = () => {
     return (
         <LayOut>
-            Todos Page
+            <div className='full-screen center-content'>
+                Todos Page
+            </div>
         </LayOut>
     );
 };

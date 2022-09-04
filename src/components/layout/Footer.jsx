@@ -1,10 +1,11 @@
 import React from 'react';
+import Logo from "../Logo";
 
 const Footer = () => {
     return (
-        <div>
-            
-        </div>
+        <footer>
+            <Logo clickable={false}/>
+        </footer>
     );
 };
 

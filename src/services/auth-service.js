@@ -20,4 +20,10 @@ export class AuthService {
         const config = { headers: helpers.generateAuthHeader(token) }
         await axios.delete(url,config);
     }
+
+    static async getCurrentUser(token) {
+        const url = apiBaseURL + 'auth/current-user';
+        const config = { headers: helpers.generateAuthHeader(token) }
+        return await axios.get(url,config);
+    }
 }

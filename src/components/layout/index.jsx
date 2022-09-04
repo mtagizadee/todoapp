@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const LayOut = ({children}) => {
+
     return (
         <div>
             <Header/>

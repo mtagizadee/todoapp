@@ -1,10 +1,11 @@
 import React from 'react';
+import LayOut from "../../components/layout";
 
 const Todos = () => {
     return (
-        <div className='full-screen center-content'>
+        <LayOut>
             Todos Page
-        </div>
+        </LayOut>
     );
 };
 

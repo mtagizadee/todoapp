@@ -13,7 +13,16 @@ module.exports = {
         'primary-card': 'rgb(27,47,45)',
         'primary-border': 'rgb(94,149,125)',
         'primary-title': 'rgb(137,246,208)'
-      }
+      },
+      width: {
+        primary: '1600px'
+      },
+      screens: {
+        sm: '468px',
+        '2sm': '576px',
+        md: '960px',
+        lg: '1440px',
+      },
     },
   },
   plugins: [],

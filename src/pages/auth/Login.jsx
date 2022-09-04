@@ -3,21 +3,23 @@ import Logo from "../../components/Logo";
 import Input from "../../components/ui/Input";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {login} from "../../features/slices/authSlice";
+import {giveAccess} from "../../features/slices/authSlice";
 import {useNavigate} from "react-router";
+import {AuthService} from "../../services/auth-service";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            dispatch(await login({email, password}));
-            alert('Successfully logged in, navigating to home page...');
+            const response = await AuthService.login({ email, password });
+            dispatch(giveAccess(response.data.token));
+            alert('Successfully logged in, navigating to todos page...');
             navigate('/');
         } catch (error) {
             alert(error);

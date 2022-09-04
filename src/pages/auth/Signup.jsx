@@ -3,8 +3,9 @@ import Logo from "../../components/Logo";
 import Input from "../../components/ui/Input";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {signup} from "../../features/slices/authSlice";
+import {giveAccess} from "../../features/slices/authSlice";
 import {useNavigate} from "react-router";
+import {AuthService} from "../../services/auth-service";
 
 const Signup = () => {
     const [firstName, setFirstName] = useState('');
@@ -20,8 +21,14 @@ const Signup = () => {
         e.preventDefault();
         if (password === confirmedPassword) {
             try {
-                dispatch(await signup({firstName, secondName, email, password}))
-                alert('Successfully signed up, navigating to home page...');
+                const response = await AuthService.signup({
+                    email,
+                    password,
+                    firstName,
+                    secondName
+                });
+                dispatch(giveAccess(response.data.token));
+                alert('Successfully signed up, navigating to todos page...');
                 navigate('/');
             } catch (error) {
                 alert(error);

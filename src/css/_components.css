@@ -2,7 +2,7 @@
 
 @layer components {
     .full-screen {
-        @apply w-screen h-screen;
+        @apply w-[100%] h-screen;
     }
 
     .center-content {

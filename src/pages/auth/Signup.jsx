@@ -13,9 +13,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
-
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -30,11 +28,9 @@ const Signup = () => {
                 dispatch(setIsAuth(true));
                 dispatch(setToken(response.data.token));
                 alert('Successfully signed up, navigating to todos page...');
-                navigate('/');
             } catch (error) {
                 alert(error);
             }
-
         } else {
             alert("Repeated password doesn't match original password");
         }

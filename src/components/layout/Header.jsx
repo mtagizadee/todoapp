@@ -1,11 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import Logo from "../Logo";
 import Modal from "../Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthService} from "../../services/auth-service";
 import {set} from '../../features/slices/userSlice';
 import {setIsAuth, setToken, signOut} from "../../features/slices/authSlice";
-import {useNavigate} from "react-router";
 import Input from "../../components/ui/Input";
 import {UserService} from "../../services/user-service";
 
@@ -15,37 +14,11 @@ const fixRequestDtoValue = (value) => {
 
 const Header = () => {
     const [modal, setModal] = useState(false);
-    const token = useSelector(state => state.auth.token);
     const user = useSelector(state => state.user.user)
-    const [isLoading, setIsLoading] = useState(true);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const onClick = useCallback(() => {
         setModal(true);
     },[]);
-
-    const fetchCurrentUser = async () => {
-        try {
-            const response = await AuthService.getCurrentUser(token);
-            dispatch(set(response.data.user))
-            setIsLoading(false);
-        } catch (error) {
-            if (error.response.status === 403) {
-                dispatch(setToken(''));
-                dispatch(setIsAuth(false));
-                navigate('/');
-            } else {
-                alert(error);
-            }
-        }
-    }
-
-    useEffect(() => {
-        fetchCurrentUser().catch(console.error);
-    },[]);
-
-    if (isLoading) return <div className='full-screen center-content'> Loading... </div>
 
     return (
         <>
@@ -92,7 +65,16 @@ const ConfigurationForm = ({setContainerModal}) => {
 
     const onClick = useCallback(() => {
         setModal(true);
-    },[])
+    },[]);
+
+    const onSignOutClick = async () => {
+        try {
+            await AuthService.signOut(token);
+            window.location.reload();
+        } catch (error) {
+            alert(error);
+        }
+    }
 
     return (
         <>
@@ -129,7 +111,10 @@ const ConfigurationForm = ({setContainerModal}) => {
                     />
                     <button> Update </button>
                 </form>
-                <button onClick={onClick} className='bg-red-600 text-white ml-6'> Delete </button>
+                <div className='flex justify-evenly'>
+                    <button onClick={onClick} className='bg-red-600 text-white ml-6'> Delete </button>
+                    <button onClick={onSignOutClick}> Sign Out </button>
+                </div>
             </div>
             <Modal modal={modal} setModal={setModal}>
                 <DeleteMessage setContainerModal={setModal} />
@@ -149,7 +134,6 @@ const DeleteMessage = ({setContainerModal}) => {
             dispatch(setIsAuth(false));
             alert('Deletion was successfully done, closing the modal...');
             setContainerModal(false);
-            window.location.reload();
         } catch (error) {
             alert(error);
         }

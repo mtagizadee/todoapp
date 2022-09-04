@@ -1,16 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "../pages/auth/Login";
-import Signup from "../pages/auth/Signup";
-import Error from "../pages/error/Error";
-import Todos from "../pages/todos/Todos";
 import {useSelector} from "react-redux";
 import {privateRoutes, publicRoutes} from "../routes";
 
 const App = () => {
     const isAuth = useSelector(state => state.auth.isAuth);
     const routes = isAuth? privateRoutes : publicRoutes;
-    console.log(isAuth);
 
     return (
         <BrowserRouter>
@@ -24,8 +19,7 @@ const App = () => {
                         key={route.path}
                     />
                 )}
-                <Route path='*' exact={true} element={<Navigate to='/error' />}/>
-                <Route path='/error' exact={true} element={<Error />}/>
+                <Route path='*' exact={true} element={<Navigate to='/' />}/>
             </Routes>
         </BrowserRouter>
     );

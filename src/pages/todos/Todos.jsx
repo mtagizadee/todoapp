@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import LayOut from "../../components/layout";
+import Board from "../../components/Board";
 
 const Todos = () => {
     return (
         <LayOut>
-            <div className='full-screen center-content'>
-                Todos Page
-            </div>
+            <Board/>
         </LayOut>
     );
 };

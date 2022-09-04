@@ -10,8 +10,6 @@ import {AuthService} from "../../services/auth-service";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
@@ -21,7 +19,6 @@ const Login = () => {
             dispatch(setIsAuth(true));
             dispatch(setToken(response.data.token));
             alert('Successfully logged in, navigating to todos page...');
-            navigate('/');
         } catch (error) {
             alert(error);
         }

@@ -15,7 +15,7 @@ export const authSlice = createSlice({
         setToken: (state, action) => {
             const value = action.payload;
             localStorage.setItem('token',value);
-            state.isAuth = value;
+            state.token = value;
         },
         giveAccess: (state,action) => {
             authSlice.caseReducers.setIsAuth(state, true);

@@ -10,11 +10,12 @@ import {privateRoutes, publicRoutes} from "../routes";
 const App = () => {
     const isAuth = useSelector(state => state.auth.isAuth);
     const routes = isAuth? privateRoutes : publicRoutes;
+    console.log(isAuth);
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' exact={true} element={<Navigate to={isAuth? '/todos' : 'auth/login'} />}/>
+                <Route path='/' exact={true} element={<Navigate to={isAuth? '/todos' : '/auth/login'} />}/>
                 {routes.map(route =>
                     <Route
                         path={route.path}

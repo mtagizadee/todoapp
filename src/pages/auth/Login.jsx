@@ -3,7 +3,7 @@ import Logo from "../../components/Logo";
 import Input from "../../components/ui/Input";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {giveAccess} from "../../features/slices/authSlice";
+import {giveAccess, setIsAuth, setToken} from "../../features/slices/authSlice";
 import {useNavigate} from "react-router";
 import {AuthService} from "../../services/auth-service";
 
@@ -18,7 +18,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await AuthService.login({ email, password });
-            dispatch(giveAccess(response.data.token));
+            dispatch(setIsAuth(true));
+            dispatch(setToken(response.data.token));
             alert('Successfully logged in, navigating to todos page...');
             navigate('/');
         } catch (error) {

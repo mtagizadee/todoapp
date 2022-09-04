@@ -20,10 +20,6 @@ export const authSlice = createSlice({
         giveAccess: (state,action) => {
             authSlice.caseReducers.setIsAuth(state, true);
             authSlice.caseReducers.setToken(state, action.payload);
-        },
-        signOut: async (state) => {
-            authSlice.caseReducers.setIsAuth(state, false);
-            authSlice.caseReducers.setToken(state, { payload: '' });
         }
     }
 });

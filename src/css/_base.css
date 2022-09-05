@@ -30,7 +30,7 @@
     }
 
     header {
-        @apply fixed w-full z-40 bg-primary-card p-3 sm:p-6 flex justify-between sm:justify-evenly items-center;
+        @apply fixed top-0 w-full z-40 bg-primary-card p-3 sm:p-6 flex justify-between sm:justify-evenly items-center;
     }
 
     footer {

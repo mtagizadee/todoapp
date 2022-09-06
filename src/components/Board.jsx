@@ -30,18 +30,18 @@ const Board = () => {
     return (
         <>
             <div className='center-content flex-col mt-18 mb-20 mx-3 2sm:mx-12'>
-                <div className={`center-content w-full max-w-[1400px] ${isEmpty && 'h-screen'} relative`}>
+                <div className={`center-content flex-col w-full max-w-[1400px]`}>
                     <div>
                         {isEmpty?
                             <p> There is noting yet... </p> :
-                            <div className='py-36'>
+                            <div className='pt-36 md:grid grid-cols-2 gap-[30px] lg:grid-cols-3'>
                                 {
-                                    todos.map(todo => <Todo todo={todo} key={todo.id}/>)
+                                    todos.map(todo => <Todo data={todo} key={todo.id}/>)
                                 }
                             </div>
                         }
                     </div>
-                    <button className='mb-12 absolute bottom-0' onClick={onClick}> Add </button>
+                    <button className='mt-3' onClick={onClick}> Add </button>
                 </div>
             </div>
             <Modal modal={modal} setModal={setModal}>

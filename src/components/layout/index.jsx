@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Header from "./Header";
-import Footer from "./Footer";
 import {AuthService} from "../../services/auth-service";
 import {set} from "../../features/slices/userSlice";
 import {setIsAuth, setToken} from "../../features/slices/authSlice";
@@ -39,7 +38,6 @@ const LayOut = ({children}) => {
             <main>
                 {children}
             </main>
-            <Footer/>
         </>
     );
 };

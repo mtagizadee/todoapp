@@ -1,10 +1,10 @@
-.modal {
-    -webkit-animation: modal-animation 0.2s ease-in-out forwards;
-    -o-animation: modal-animation 0.2s ease-in-out forwards;
-    animation: modal-animation 0.2s ease-in-out forwards;
+.popup {
+    -webkit-animation: popup-animation 0.2s ease-in-out forwards;
+    -o-animation: popup-animation 0.2s ease-in-out forwards;
+    animation: popup-animation 0.2s ease-in-out forwards;
 }
 
-@keyframes modal-animation {
+@keyframes popup-animation {
     from {
         opacity: 0;
         margin-top: 3em;

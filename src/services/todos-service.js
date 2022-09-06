@@ -5,6 +5,10 @@ import axios from "axios";
 export class TodosService {
     static url = apiBaseURL + 'todos';
 
+    static generateIdUrl(id) {
+        return TodosService.url + `/${id}`;
+    }
+
     static getConfig(token) {
         return { headers: helpers.generateAuthHeader(token) }
     }
@@ -14,13 +18,13 @@ export class TodosService {
         return await axios.post(TodosService.url,dto,config);
     }
 
-    static async update(token, dto) {
+    static async update(token, dto, id) {
         const config = TodosService.getConfig(token);
-        return await axios.put(TodosService.url,dto,config);
+        return await axios.put(TodosService.generateIdUrl(id),dto,config);
     }
 
-    static async delete(token) {
+    static async delete(token, id) {
         const config = TodosService.getConfig(token);
-        return await axios.delete(TodosService.url,config);
+        return await axios.delete(TodosService.generateIdUrl(id),config);
     }
 }
